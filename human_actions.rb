@@ -17,7 +17,6 @@ module HumanActions
           !incorrect_letters.include?(letter) &&
           letter =~ /[a-z]/
       incorrect_letters[@try_count] = letter
-      p incorrect_letters
     else
       puts "You should enter only 1 letter that you haven't already entered.".red
       guess_letter(secret_word, guess_word)

@@ -9,6 +9,7 @@ class Game
     until guess_word == secret_word || try_count == 10
       guess_letter(secret_word, guess_word)
     end
+    game_results
   end
 
   private
@@ -42,5 +43,13 @@ class Game
 │#{' ' * padding}      #{decorated_guess_word.join(' ')}      #{' ' * padding}│
 └───────────────────────────────────┘
 ui
+  end
+
+  def game_results
+    if guess_word == secret_word
+      puts 'You won. Congratulations!! (=^･･^)ﾉ'.yellow
+    else
+      puts "You lost. Good luck next time!"
+    end
   end
 end
