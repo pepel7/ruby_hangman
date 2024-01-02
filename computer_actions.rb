@@ -4,5 +4,6 @@ module ComputerActions
                                 chomp: true)
     dictionary.filter {|word| word.length >= 5 && word.length <= 12}
               .sample
+              .split('')
   end
 end
