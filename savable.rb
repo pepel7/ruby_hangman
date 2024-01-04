@@ -44,6 +44,7 @@ module Savable
     @loaded = true
     loaded_game.loaded = true
     loaded_game.play
+    file.close
   end
 
   def save_game

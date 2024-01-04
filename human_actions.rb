@@ -7,16 +7,14 @@ module HumanActions
     print "Enter a letter: "
     letter = gets.chomp.downcase
 
-    if secret_word.include?(letter) && !guess_word.include?(letter)
+    if correct_letter? letter
       secret_word.each_with_index do |char, i|
-        if char == letter
-          guess_word[i] = letter
-        end
+        guess_word[i] = letter if char == letter
       end
-    elsif !secret_word.include?(letter) &&
-          !incorrect_letters.include?(letter) &&
-          letter =~ /^[a-z]$/
+    elsif incorrect_letter? letter
       incorrect_letters[@try_count] = letter
+    elsif letter == secret_word.join
+      @guess_word = secret_word
     elsif letter == 'save'
       save_game
       return
@@ -29,5 +27,15 @@ module HumanActions
     end
     @try_count += 1
     return false
+  end
+
+  def correct_letter?(letter)
+    secret_word.include?(letter) && !guess_word.include?(letter)
+  end
+
+  def incorrect_letter?(letter)
+    !secret_word.include?(letter) &&
+    !incorrect_letters.include?(letter) &&
+    letter =~ /^[a-z]$/
   end
 end
