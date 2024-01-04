@@ -15,12 +15,19 @@ module HumanActions
       end
     elsif !secret_word.include?(letter) &&
           !incorrect_letters.include?(letter) &&
-          letter =~ /[a-z]/
+          letter =~ /^[a-z]$/
       incorrect_letters[@try_count] = letter
+    elsif letter == 'save'
+      save_game
+      return
+    elsif letter == 'quit'
+      return true
     else
-      puts "You should enter only 1 letter that you haven't already entered.".red
+      puts "You should enter 1 letter that you haven't already entered.".red
       guess_letter(secret_word, guess_word)
+      return
     end
     @try_count += 1
+    return false
   end
 end
