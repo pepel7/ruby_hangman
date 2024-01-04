@@ -1,34 +1,28 @@
 module Displayable
   def print_instructions
-    puts <<-instructions
-This is the game "Hangman". The computer sets a secret word,
-and you guess it by entering 1 letter in 1 turn.
-If you have already guessed what the word is, you can enter it in full.
-Let's begin. Good luck to you!\n
-    instructions
+    puts "This is the game 'Hangman'. The computer sets a secret word,"
+    puts "and you guess it by entering 1 letter in 1 turn."
+    puts "If you have already guessed what the word is, you can enter it in full."
+    puts "Let's begin. Good luck to you!\n"
   end
 
   def print_ui
     decorated_guess_word = guess_word.map do |char|
-      if char.nil?
-        char = '_'
-      else
-        char
-      end
+      char = char.nil? ? '_' : char
     end
-    tries_left = 10 - try_count
-    # these are for padding
-    nil_count = incorrect_letters.count(nil)
-    padding = 12 - secret_word.length
-    # #{' ' unless try_count == 0} is for the space that appears when
+    try_left_count_display = try_left_count == 1 ? try_left_count.to_s.red : try_left_count
+
+    letters_padding = 10 - incorrect_letters.length
+    word_padding = 12 - secret_word.length + 5
+    # #{' ' unless try_left_count == 0} is for the space that appears when
     # tries_left falls below 10.
     puts <<-ui
 ┌───────────────────────────────────┐
 │ #{"Type 'save' to save the game.".gray}     │
-│ Tries left: #{tries_left}                    #{' ' unless try_count == 0}│
-│ Incorrect letters: #{incorrect_letters.join}     #{' ' * nil_count}│
+│ Tries left: #{try_left_count_display} #{' ' * 18} #{' ' unless try_left_count == 10}│
+│ Incorrect letters: #{incorrect_letters.join}     #{' ' * letters_padding}│
 ├───────────────────────────────────┤
-│#{' ' * padding}      #{decorated_guess_word.join(' ')}      #{' ' * padding}│
+│#{' ' * word_padding} #{decorated_guess_word.join(' ')} #{' ' * word_padding}│
 └───────────────────────────────────┘
 ui
   end

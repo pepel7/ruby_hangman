@@ -27,14 +27,13 @@ module Savable
 
   def ask_file_index_to_load(suggestions)
     puts "Which save do you want to use? Enter a number from the list below."
-    suggestions_list_with_numbers = suggestions.map.with_index do |file, index|
+    suggestions.each_with_index do |file, index|
       puts "  #{index}. #{file[8..-9]}" unless index == 0
     end
     answer = gets.chomp.to_i
     if not (1...suggestions.length).include?(answer)
       ask_file_index_to_load(suggestions)
     end
-    answer
   end
 
   def load_game(filename)
