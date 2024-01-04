@@ -11,6 +11,7 @@ class Game
 
   def play
     if !loaded
+      print_instructions
       return if ask_new_or_continue_game
     end
     until guess_word == secret_word || try_count == 10

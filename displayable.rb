@@ -1,4 +1,13 @@
 module Displayable
+  def print_instructions
+    puts <<-instructions
+This is the game "Hangman". The computer sets a secret word,
+and you guess it by entering 1 letter in 1 turn.
+If you have already guessed what the word is, you can enter it in full.
+Let's begin. Good luck to you!\n
+    instructions
+  end
+
   def print_ui
     decorated_guess_word = guess_word.map do |char|
       if char.nil?
