@@ -3,7 +3,7 @@ module Displayable
     puts "This is the game 'Hangman'. The computer sets a secret word,"
     puts "and you guess it by entering 1 letter in 1 turn."
     puts "If you have already guessed what the word is, you can enter it in full."
-    puts "Let's begin. Good luck to you!\n"
+    puts "Let's begin. Good luck to you!\n\n"
   end
 
   def print_ui
@@ -18,12 +18,12 @@ module Displayable
     # tries_left falls below 10.
     puts <<-ui
 ┌───────────────────────────────────┐
-│ #{"Type 'save' to save the game.".gray}     │
+│ #{"You can type 'save' or 'quit'".gray}     │
 │ Tries left: #{try_left_count_display} #{' ' * 18} #{' ' unless try_left_count == 10}│
 │ Incorrect letters: #{incorrect_letters.join}     #{' ' * letters_padding}│
 ├───────────────────────────────────┤
 │#{' ' * word_padding} #{decorated_guess_word.join(' ')} #{' ' * word_padding}│
 └───────────────────────────────────┘
-ui
+    ui
   end
 end

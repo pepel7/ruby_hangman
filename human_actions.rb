@@ -1,6 +1,3 @@
-require 'colorize'
-require './game'
-
 module HumanActions
   def guess_letter(secret_word, guess_word)
     print_ui

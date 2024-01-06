@@ -1,3 +1,4 @@
+require 'colorize'
 require './computer_actions'
 require './human_actions'
 require './displayable'
@@ -15,7 +16,7 @@ class Game
       return if ask_new_or_continue_game
     end
     until guess_word == secret_word || try_left_count == 0
-      return if guess_letter(secret_word, guess_word)
+      break if guess_letter(secret_word, guess_word)
     end
     game_results
   end
